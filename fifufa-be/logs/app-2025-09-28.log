@@ -1,0 +1,27 @@
+[2025-09-28 10:16:57] [SUCCESS] ✅ FiFuFa Backend started on http://localhost:5000
+[2025-09-28 10:17:09] [INFO] Facts requested for topic: "Indonesia" (popular facts)
+[2025-09-28 10:17:15] [SUCCESS] Result (5): "🏝️ Indonesia, Southeast Asia's largest island nation, comprises thousands of islands, including Bali, Java, and Sumatra. 🌊🌳,🍜 Nasi Goreng, a spicy fried rice dish, is Indonesia's most popular national food. It's a staple in local eateries and homes. 🍛🇮{br},🐨 Orangutans, Komodo dragons, and Javanese slow lorises are among Indonesia's diverse wildlife species found in its rainforests and islands. 🦍🌳🐊🦇,🏛️ Borobudur Temple, a 9th-century Buddhist monument in Central Java, is the world's largest single-monolithic religious structure and a UNESCO World Heritage Site. 🕌🌍,🎭 Wayang Kulit, an ancient shadow puppet theatre tradition, showcases epic tales from Hindu epics Ramayana and Mah" 
+[2025-09-28 13:11:58] [SUCCESS] ✅ FiFuFa Bilingual Backend started on http://localhost:5000
+[2025-09-28 13:11:58] [INFO] 🌍 Supported languages: English (en), Indonesian (id)
+[2025-09-28 13:12:05] [INFO] Generating new batch of random words [id]...
+[2025-09-28 13:12:07] [INFO] Generated word cache [id]: [sejarah majapahit, budaya pop girl groups, badminton, angklung tradisional, batik jogja, sejarah kejayanan aceh, kecak danff sanghyang.]
+[2025-09-28 13:12:07] [INFO] Served random word [id] 1/10: "sejarah majapahit" (6 remaining)
+[2025-09-28 13:12:10] [INFO] Facts requested [id] for topic: "sejarah majapahit" (popular)
+[2025-09-28 13:12:14] [SUCCESS] [id] (5 facts): Generated successfully
+[2025-09-28 13:12:14] [SUCCESS] Result: Majapahit, Jawa Timur, 13th-16th century, powerful Hindu-Buddhist empire. 🏛️🌉,Gajah Mada, loyal minister, led expeditions & expanded Majapahit territory. 👨‍✈️🌍,Kertanegara's death sparked rebellion; Majapahit emerged victorious under Jayanegara. 🗡️🏛️,Trunajaya War (1670s) marked Majapahit's decline against Mataram Sultanate. ⚔️🇮🇩,Trowulan, ancient capital of Majapahit, now a UNESCO World Heritage Site. 🏞️🏛️ 
+[2025-09-28 13:13:14] [SUCCESS] ✅ FiFuFa Bilingual Backend started on http://localhost:5000
+[2025-09-28 13:13:14] [INFO] 🌍 Supported languages: English (en), Indonesian (id)
+[2025-09-28 13:13:16] [INFO] Facts requested [id] for topic: "sejarah majapahit" (unpopular)
+[2025-09-28 13:13:19] [SUCCESS] [id] (5 facts): Generated successfully
+[2025-09-28 13:13:19] [SUCCESS] Result: Majapahit kemudian hilang tanpa perang besar utama 🏛️ (15 words),Bupati Girindra, raja Majapahit terakhir, meninggal 1478 💀 (14 words),Majapahit jatuh akibat pandemik dan perang luar 👥🦠 (13 words),Kecamatan Bali tetap loyal kepada Majapahit 🇮🇩🌋 (12 words),Wali Sanga, pimpinan Bali, tidak terlibat dalam pemberontakan internasional 🤝 (15 words) 
+[2025-09-28 15:48:31] [SUCCESS] ✅ FiFuFa Bilingual Backend started on http://localhost:5000
+[2025-09-28 15:48:31] [INFO] 🌍 Supported languages: English (en), Indonesian (id)
+[2025-09-28 15:48:58] [INFO] Facts requested [en] for topic: "Jokowi" (popular)
+[2025-09-28 15:49:03] [SUCCESS] [en] (7 facts): Generated successfully
+[2025-09-28 15:49:03] [SUCCESS] Result: Joko Widodo, popularly known as Jokowi, is the current President of Indonesia, serving since,🏛️🇮🇩,He previously served as Governor of Jakarta from 2012 to 2014, known for his urban development projects. 🏙️,Jokowi is recognized for his down-to-earth personality and often commutes via motorcycle despite security concerns. 🚲,He played a significant role in securing Indonesia's hosting of the G20 Summit in,🌍💼,In 2019, he launched the "Indonesia Palm Oil Sustainability Policy" focusing on sustainable agriculture. 🌳🥜 
+[2025-09-28 15:49:43] [INFO] Facts requested [id] for topic: "REndang" (popular)
+[2025-09-28 15:49:47] [SUCCESS] [id] (5 facts): Generated successfully
+[2025-09-28 15:49:47] [SUCCESS] Result: 🍛 Rendang adalah makanan khas Minangkabau, Sumatera Barat, Indonesia.,🌶️ Isi rendang terdiri dari daging sapi yang diukus dengan bumbu-bumbu tepung dan rempah-rempah.,🔥 Proses memasak rendang menggunakan teknik "rempah-rempah lama" yang membutuhkan waktu yang lama (beberapa jam hingga beberapa hari).,🍚 Rendang sering dipakai dalam pesta-pesta tradisional Minangkabau seperti tabuik dan turun minangkabau.,🏠 Rendang dikenal sebagai "masakan yang paling enak" di Indonesia dan dilengkapinya oleh UNESCO sebagai kebudayaan budaya dunia. 
+[2025-09-28 15:49:57] [INFO] Facts requested [id] for topic: "REndang" (unpopular)
+[2025-09-28 15:50:00] [SUCCESS] [id] (5 facts): Generated successfully
+[2025-09-28 15:50:00] [SUCCESS] Result: 🍛 Rendang's origin traces back to Minangkabau, West Sumatra, not Padang.,🌶️ It traditionally uses durian-like fruit, pungent as chili, for flavor.,🐘 Elephants love rendang; it's a treat in some Indonesian zoos.,🕒 Cooking time can exceed 5 hours, sometimes up to 12 hours!,🍃 Coconut milk evaporates during long cooking, leaving rich gravy. 
