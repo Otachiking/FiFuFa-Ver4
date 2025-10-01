@@ -200,7 +200,7 @@ app.get("/health", (req, res) => {
   res.json({ status: "OK", message: "FiFuFa Bilingual API is running!" });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   logger.success(`✅ FiFuFa Bilingual Backend started on http://localhost:${PORT}`);
   logger.info(`🌍 Supported languages: English (en), Indonesian (id)`);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import config from "../config/config.js";
 
 // Translations
 const translations = {
@@ -146,7 +147,7 @@ function App() {
     setFacts([]);
 
     try {
-      const response = await fetch("http://localhost:5000/api/facts", {
+      const response = await fetch(`${config.apiUrl}/api/facts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -192,7 +193,7 @@ function App() {
     if (!topic) return;
     setLoadingMore(true);
     try {
-      const response = await fetch("http://localhost:5000/api/facts", {
+      const response = await fetch(`${config.apiUrl}/api/facts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -228,7 +229,7 @@ function App() {
   const getRandomWord = async () => {
     setLoadingRandomWord(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/random-words?language=${language}`);
+      const response = await fetch(`${config.apiUrl}/api/random-words?language=${language}`);
       const data = await response.json();
 
       if (!response.ok) {
