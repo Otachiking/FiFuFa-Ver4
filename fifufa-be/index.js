@@ -17,8 +17,26 @@ app.use(express.json());
 // Replicate setup
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
-  userAgent: "https://www.npmjs.com/package/create-replicate",
+  userAgent: "FiFuFa/1.0.0 (https://github.com/Otachiking/FiFuFa-Ver4)",
+  fetch: (url, options) => {
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin': 'https://fifufa-ver4.onrender.com',
+      }
+    });
+  }
 });
+
+// Log environment check
+console.log("🔧 Environment Check:");
+console.log("- REPLICATE_API_TOKEN:", process.env.REPLICATE_API_TOKEN ? "✅ Set" : "❌ Missing");
+console.log("- NODE_ENV:", process.env.NODE_ENV);
+console.log("- PORT:", process.env.PORT);
+
 const model = "ibm-granite/granite-3.3-8b-instruct:618ecbe80773609e96ea19d8c96e708f6f2b368bb89be8fad509983194466bf8";
 
 // Language-specific word caches
@@ -127,8 +145,17 @@ app.post("/api/facts", async (req, res) => {
     res.json({ facts, language: validLanguage });
   } catch (error) {
     logger.error(`Facts API Error: ${error.message}`);
+    console.error("🚨 Detailed Error:", {
+      message: error.message,
+      status: error.status,
+      code: error.code,
+      stack: error.stack?.split('\n')[0] // First line only
+    });
+    
     if (error.status === 429) {
       res.status(429).json({ error: "Too many requests. Please wait a moment." });
+    } else if (error.message.includes("Authentication") || error.message.includes("token")) {
+      res.status(401).json({ error: "API token issue. Please check configuration." });
     } else {
       res.status(500).json({ error: "Something went wrong." });
     }
@@ -191,7 +218,18 @@ app.get("/api/random-words", async (req, res) => {
     }
   } catch (error) {
     logger.error(`Random words API Error: ${error.message}`);
-    res.status(500).json({ error: "Failed to generate random word" });
+    console.error("🚨 Random Words Detailed Error:", {
+      message: error.message,
+      status: error.status,
+      code: error.code,
+      stack: error.stack?.split('\n')[0] // First line only
+    });
+    
+    if (error.message.includes("Authentication") || error.message.includes("token")) {
+      res.status(401).json({ error: "API token issue. Please check configuration." });
+    } else {
+      res.status(500).json({ error: "Failed to generate random word" });
+    }
   }
 });
 

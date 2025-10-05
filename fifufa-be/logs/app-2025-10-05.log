@@ -3,3 +3,5 @@
 [2025-10-05 14:11:02] [INFO] Facts requested [en] for topic: "jakarta" (popular)
 [2025-10-05 14:11:07] [SUCCESS] [en] (5 facts): Generated successfully
 [2025-10-05 14:11:07] [SUCCESS] Result: Jakarta, Indonesia's capital, is Southeast Asia's largest city 🏙️. It's known for its colonial-era architecture, like the grand Indonesian National Monument 🏛️.,Jakarta is prone to flooding due to its low elevation and heavy rainfall, exacerbated by land subsidence 📉🏊‍♀️.,The city boasts a vibrant food scene, with street food stalls (warungs) offering local delicacies like nasi goreng and sate 🍛🍜.,Jakarta is home to the iconic Merdeka Square (Freedom Square), a symbol of Indonesia's independence 🇮🇩🏃‍♂️🗽.,The city has a rich cultural heritage, with numerous museums, such as the National Museum showcasing Indonesian art and history 📚🏛️. 
+[2025-10-05 14:42:27] [SUCCESS] ✅ FiFuFa Bilingual Backend started on http://localhost:5000
+[2025-10-05 14:42:27] [INFO] 🌍 Supported languages: English (en), Indonesian (id)
