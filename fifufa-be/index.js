@@ -45,6 +45,18 @@ const wordCaches = {
   id: { words: [], index: 0 }
 };
 
+// Fallback word lists when Replicate API fails
+const fallbackWords = {
+  en: [
+    "ninja", "einstein", "pizza", "dolphins", "aurora", "chocolate", "robots", "space", "ocean", "mountains",
+    "dragons", "crystals", "volcanoes", "antarctica", "pyramids", "sakura", "thunder", "diamonds", "galaxies", "rainbows"
+  ],
+  id: [
+    "rendang", "borobudur", "komodo", "batik", "gamelan", "wayang", "angklung", "raisa", "sunda", "java",
+    "bali", "lombok", "sulawesi", "kalimantan", "sumatra", "papua", "maluku", "nusantara", "majapahit", "sriwijaya"
+  ]
+};
+
 // Utility functions
 const validateTopic = (topic) => {
   if (!topic || typeof topic !== "string") {
@@ -173,31 +185,43 @@ app.get("/api/random-words", async (req, res) => {
     if (cache.words.length === 0 || cache.index >= cache.words.length) {
       logger.info(`Generating new batch of random words [${validLanguage}]...`);
 
-      const promptText = getRandomWordsPrompt(validLanguage);
-      
-      const input = {
-        top_k: 50,
-        top_p: 0.9,
-        prompt: promptText,
-        max_tokens: 150,
-        temperature: 0.8,
-        presence_penalty: 0.7,
-        frequency_penalty: 0.7,
-      };
+      try {
+        const promptText = getRandomWordsPrompt(validLanguage);
+        
+        const input = {
+          top_k: 50,
+          top_p: 0.9,
+          prompt: promptText,
+          max_tokens: 150,
+          temperature: 0.8,
+          presence_penalty: 0.7,
+          frequency_penalty: 0.7,
+        };
 
-      const output = await replicate.run(model, { input });
-      const wordsRaw = output.join("");
+        const output = await replicate.run(model, { input });
+        const wordsRaw = output.join("");
 
-      // Parse words from response
-      cache.words = wordsRaw
-        .replace(/\d+\.\s*/g, "") // Remove numbering
-        .split(/[,\n]/) // Split by comma or newline
-        .map((w) => w.trim().toLowerCase())
-        .filter((w) => w.length > 0 && w.length < 25)
-        .slice(0, 10);
+        // Parse words from response
+        cache.words = wordsRaw
+          .replace(/\d+\.\s*/g, "") // Remove numbering
+          .split(/[,\n]/) // Split by comma or newline
+          .map((w) => w.trim().toLowerCase())
+          .filter((w) => w.length > 0 && w.length < 25)
+          .slice(0, 10);
 
-      cache.index = 0;
-      logger.info(`Generated word cache [${validLanguage}]: [${cache.words.join(", ")}]`);
+        cache.index = 0;
+        logger.info(`Generated word cache [${validLanguage}]: [${cache.words.join(", ")}]`);
+      } catch (apiError) {
+        logger.warn(`Replicate API failed, using fallback words [${validLanguage}]: ${apiError.message}`);
+        
+        // Use fallback words when API fails
+        const fallbackList = fallbackWords[validLanguage];
+        const shuffled = [...fallbackList].sort(() => Math.random() - 0.5);
+        cache.words = shuffled.slice(0, 10);
+        cache.index = 0;
+        
+        logger.info(`Using fallback word cache [${validLanguage}]: [${cache.words.join(", ")}]`);
+      }
     }
 
     // Return next word from cache
@@ -205,12 +229,13 @@ app.get("/api/random-words", async (req, res) => {
       const randomWord = cache.words[cache.index];
       cache.index++;
 
-      logger.info(`Served random word [${validLanguage}] ${cache.index}/10: "${randomWord}" (${cache.words.length - cache.index} remaining)`);
+      logger.info(`Served random word [${validLanguage}] ${cache.index}/${cache.words.length}: "${randomWord}" (${cache.words.length - cache.index} remaining)`);
       
       res.json({
         word: randomWord,
         language: validLanguage,
         remaining: cache.words.length - cache.index,
+        source: cache.words.includes(randomWord) ? "generated" : "fallback"
       });
     } else {
       logger.error(`No words available in cache [${validLanguage}]`);
@@ -225,11 +250,7 @@ app.get("/api/random-words", async (req, res) => {
       stack: error.stack?.split('\n')[0] // First line only
     });
     
-    if (error.message.includes("Authentication") || error.message.includes("token")) {
-      res.status(401).json({ error: "API token issue. Please check configuration." });
-    } else {
-      res.status(500).json({ error: "Failed to generate random word" });
-    }
+    res.status(500).json({ error: "Failed to generate random word" });
   }
 });
 
