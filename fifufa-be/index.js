@@ -200,6 +200,18 @@ app.get("/health", (req, res) => {
   res.json({ status: "OK", message: "FiFuFa Bilingual API is running!" });
 });
 
+// Root route
+app.get("/", (req, res) => {
+  res.json({ 
+    message: "🖐🏻 Welcome to FiFuFa Backend API!", 
+    endpoints: {
+      health: "/health",
+      facts: "POST /api/facts",
+      randomWords: "GET /api/random-words"
+    }
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   logger.success(`✅ FiFuFa Bilingual Backend started on http://localhost:${PORT}`);
